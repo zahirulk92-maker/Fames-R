@@ -1,0 +1,65 @@
+import { PerformanceReview, PerformanceGoal } from '../types/staffAndJobs';
+
+export const MOCK_PERFORMANCE_REVIEWS: PerformanceReview[] = [
+  {
+    id: 'perf-1',
+    staffId: '3',
+    staffName: 'Nusrat Jahan',
+    role: 'Senior',
+    period: 'Q2 2026',
+    taskCompletion: 92,
+    timeliness: 85,
+    reviewQuality: 90,
+    attendance: 95,
+    teamwork: 90,
+    overallScore: 90,
+    rating: 'Very Good',
+    managerComments: 'Nusrat is performing very well. Her trial balance analysis is meticulous and she handles communications professionally. Needs to focus a bit on timely report delivery.',
+    strengths: ['Analytical precision', 'Excellent compliance filing', 'Peer mentoring'],
+    improvementAreas: ['Time management under tight schedules', 'Advanced audit software automation'],
+    trainingRecommendations: ['Advanced CaseWare Analytics Suite', 'Effective client presentation skills'],
+  },
+  {
+    id: 'perf-2',
+    staffId: '2',
+    staffName: 'Kabir Hasan',
+    role: 'Manager',
+    period: 'Q2 2026',
+    taskCompletion: 96,
+    timeliness: 94,
+    reviewQuality: 98,
+    attendance: 98,
+    teamwork: 95,
+    overallScore: 96,
+    rating: 'Outstanding',
+    managerComments: 'Kabir is an outstanding manager. He successfully managed three concurrent audits this quarter with minimal partner supervision. His work quality is impeccable.',
+    strengths: ['Risk-based auditing expertise', 'Client relationship management', 'Highly organized team coaching'],
+    improvementAreas: ['Delegation of high-level tax reviews'],
+    trainingRecommendations: ['Executive leadership course', 'IFRS updates seminar'],
+  },
+  {
+    id: 'perf-3',
+    staffId: '5',
+    staffName: 'Tahmid Rahman',
+    role: 'Article Student',
+    period: 'Q2 2026',
+    taskCompletion: 80,
+    timeliness: 82,
+    reviewQuality: 85,
+    attendance: 100,
+    teamwork: 88,
+    overallScore: 87,
+    rating: 'Good',
+    managerComments: 'Tahmid has adapted quickly to our firm environment. His inventory count execution was thorough. Solid performance as a first-year student.',
+    strengths: ['Strong work ethic', 'Always punctual', 'Fast learner'],
+    improvementAreas: ['Detailed vouching documentation standards'],
+    trainingRecommendations: ['Audit documentation basics', 'Excel for audit associates'],
+  }
+];
+
+export const MOCK_PERFORMANCE_GOALS: PerformanceGoal[] = [
+  { id: 'g1', staffId: '3', title: 'Complete CaseWare automation training', targetDate: '2026-08-30', status: 'In Progress' },
+  { id: 'g2', staffId: '3', title: 'Achieve 100% on-time audit paper draft submissions', targetDate: '2026-09-15', status: 'Pending' },
+  { id: 'g3', staffId: '2', title: 'Lead the corporate tax training seminar for new students', targetDate: '2026-08-10', status: 'In Progress' },
+  { id: 'g4', staffId: '5', title: 'Pass ICAB certificate level examinations', targetDate: '2026-11-30', status: 'Pending' }
+];

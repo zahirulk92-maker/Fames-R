@@ -1,0 +1,6 @@
+{
+  "name": "FAMES & R Office PRO",
+  "description": "A comprehensive, modern, production-quality office management web application foundation for FAMES & R.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
