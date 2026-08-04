@@ -7,18 +7,18 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Dashboard',
     route: '/dashboard',
     icon: 'LayoutDashboard',
-    section: 'Dashboard',
+    section: 'DASHBOARD',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
 
-  // Clients
+  // Client Management
   {
     id: 'clients-index',
     label: 'Clients Directory',
     route: '/clients',
     icon: 'Users',
-    section: 'Clients',
+    section: 'CLIENT MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -27,7 +27,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Client Requests',
     route: '/clients/requests',
     icon: 'GitPullRequest',
-    section: 'Clients',
+    section: 'CLIENT MANAGEMENT',
     enabled: true,
     badge: 'New',
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
@@ -37,36 +37,36 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Portal Access',
     route: '/clients/portal-access',
     icon: 'ShieldCheck',
-    section: 'Clients',
+    section: 'CLIENT MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER']
   },
   {
     id: 'clients-comms',
-    label: 'Communications',
+    label: 'Client Communications',
     route: '/clients/communications',
     icon: 'MessageSquare',
-    section: 'Clients',
+    section: 'CLIENT MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT', 'CLIENT']
   },
 
-  // Staff
+  // Student & Staff Management
   {
     id: 'staff-index',
-    label: 'Staff Directory',
+    label: 'Students / Staff',
     route: '/staff',
     icon: 'UserCheck',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER']
   },
   {
     id: 'staff-tasks',
-    label: 'My Tasks',
+    label: 'Student Tasks',
     route: '/staff/tasks',
     icon: 'CheckSquare',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     badge: 5,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
@@ -76,7 +76,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Work Logs',
     route: '/staff/work-logs',
     icon: 'FileText',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -85,16 +85,16 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Attendance',
     route: '/staff/attendance',
     icon: 'Clock',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
   {
     id: 'staff-performance',
-    label: 'Performance Tracker',
+    label: 'Performance Reports',
     route: '/staff/performance',
     icon: 'Award',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER']
   },
@@ -103,7 +103,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Holiday Calendar',
     route: '/staff/holiday-calendar',
     icon: 'Calendar',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT', 'CLIENT']
   },
@@ -112,18 +112,18 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Salary & Allowance',
     route: '/staff/salary-allowance',
     icon: 'DollarSign',
-    section: 'Staff',
+    section: 'STUDENT & STAFF MANAGEMENT',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
 
-  // Jobs
+  // Jobs & Operations
   {
     id: 'jobs-index',
-    label: 'All Jobs',
+    label: 'Job Register',
     route: '/jobs',
     icon: 'Briefcase',
-    section: 'Jobs',
+    section: 'JOBS & OPERATIONS',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -132,7 +132,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Assignments',
     route: '/jobs/assignments',
     icon: 'UserPlus',
-    section: 'Jobs',
+    section: 'JOBS & OPERATIONS',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
@@ -141,7 +141,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Deadlines',
     route: '/jobs/deadlines',
     icon: 'CalendarClock',
-    section: 'Jobs',
+    section: 'JOBS & OPERATIONS',
     enabled: true,
     badge: '3 Due',
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
@@ -151,7 +151,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Documents Vault',
     route: '/jobs/documents',
     icon: 'FolderOpen',
-    section: 'Jobs',
+    section: 'JOBS & OPERATIONS',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT', 'CLIENT']
   },
@@ -160,19 +160,19 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Review Queue',
     route: '/jobs/review-queue',
     icon: 'ClipboardList',
-    section: 'Jobs',
+    section: 'JOBS & OPERATIONS',
     enabled: true,
     badge: 2,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
 
-  // Audit
+  // Audit Workflow
   {
     id: 'audit-planning',
     label: '1. Audit Planning',
     route: '/audit/planning',
     icon: 'FileSpreadsheet',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
@@ -181,7 +181,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '2. Requisitions',
     route: '/audit/requisition',
     icon: 'FileDown',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -190,7 +190,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '3. Engagement Procedure',
     route: '/audit/engagement-procedure',
     icon: 'Award',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
@@ -199,7 +199,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '4. Substantive Procedure',
     route: '/audit/substantive-procedure',
     icon: 'TrendingUp',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -208,7 +208,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '5. Working Papers',
     route: '/audit/working-papers',
     icon: 'Files',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -217,7 +217,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '6. Review Issues',
     route: '/audit/review-issues',
     icon: 'AlertTriangle',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
@@ -226,7 +226,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: '7. Finalization',
     route: '/audit/finalization',
     icon: 'FileCheck',
-    section: 'Audit',
+    section: 'AUDIT WORKFLOW',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER']
   },
@@ -237,7 +237,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Tax & VAT Board',
     route: '/compliance/tax-vat',
     icon: 'Percent',
-    section: 'Compliance',
+    section: 'COMPLIANCE',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -246,7 +246,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'RJSC Filings',
     route: '/compliance/rjsc',
     icon: 'Globe',
-    section: 'Compliance',
+    section: 'COMPLIANCE',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR']
   },
@@ -255,7 +255,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Returns Tracker',
     route: '/compliance/returns',
     icon: 'TrendingDown',
-    section: 'Compliance',
+    section: 'COMPLIANCE',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT']
   },
@@ -264,7 +264,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Compliance Calendar',
     route: '/compliance/calendar',
     icon: 'Calendar',
-    section: 'Compliance',
+    section: 'COMPLIANCE',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN', 'MANAGER', 'SENIOR', 'STUDENT', 'CLIENT']
   },
@@ -275,7 +275,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'User Management',
     route: '/admin/users',
     icon: 'Users',
-    section: 'Administration',
+    section: 'ADMINISTRATION',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN']
   },
@@ -284,7 +284,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Roles & Permissions',
     route: '/admin/roles-permissions',
     icon: 'ShieldAlert',
-    section: 'Administration',
+    section: 'ADMINISTRATION',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN']
   },
@@ -293,7 +293,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'Firm Settings',
     route: '/admin/firm-settings',
     icon: 'Sliders',
-    section: 'Administration',
+    section: 'ADMINISTRATION',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN']
   },
@@ -302,7 +302,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'System Activity Logs',
     route: '/admin/activity-logs',
     icon: 'Activity',
-    section: 'Administration',
+    section: 'ADMINISTRATION',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN']
   },
@@ -311,7 +311,7 @@ export const NAVIGATION_ITEMS: NavigationItem[] = [
     label: 'System Readiness',
     route: '/admin/system-readiness',
     icon: 'Cpu',
-    section: 'Administration',
+    section: 'ADMINISTRATION',
     enabled: true,
     allowedRoles: ['PARTNER', 'SUPER_ADMIN']
   }

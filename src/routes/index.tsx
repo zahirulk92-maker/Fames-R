@@ -173,6 +173,11 @@ export const router = createBrowserRouter([
           { path: 'communications', element: <LazyRoute><ClientCommunicationsView /></LazyRoute> },
         ],
       },
+      // Alias for settings/portal-access
+      {
+        path: 'settings/portal-access',
+        element: <Navigate to="/clients/portal-access" replace />,
+      },
       // Staff
       {
         path: 'staff',

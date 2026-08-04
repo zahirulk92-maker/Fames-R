@@ -98,14 +98,20 @@ export const LoginPage: React.FC = () => {
       
       {/* LEFT COLUMN: BRAND PROMOTION & ACCENT DETAILS */}
       <div 
-        className="w-full md:w-[50%] bg-gradient-to-br from-[#0c2e4e] via-[#0f5481] to-[#147fb3] p-8 md:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden shrink-0"
+        className="w-full md:w-[50%] p-8 md:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden shrink-0 text-white"
         style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.12) 1px, transparent 0)',
-          backgroundSize: '24px 24px',
+          background: 'linear-gradient(135deg, #0a2540 0%, #0e4c76 50%, #126f9e 100%)',
         }}
       >
         {/* Subtle grid elements / ambient overlays */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/10 to-transparent pointer-events-none" />
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-30 z-0"
+          style={{
+            backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.35) 1px, transparent 0)',
+            backgroundSize: '24px 24px',
+          }}
+        />
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/10 to-transparent pointer-events-none z-0" />
 
         {/* Top bar */}
         <div className="relative z-10 flex flex-col gap-1.5 animate-fade-in">

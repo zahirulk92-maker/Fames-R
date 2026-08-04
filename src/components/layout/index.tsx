@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Link, useLocation, useNavigate } from 'react-router-dom';
 import * as Icons from 'lucide-react';
 import { NAVIGATION_ITEMS } from '../../constants/navigation';
-import { useToast, DemoBadge } from '../ui';
+import { useToast } from '../ui';
 
 // ==========================================
 // 1. AppShell Component (Main Layout Wrapper)
@@ -11,9 +11,9 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-[#f4f7fa] flex font-sans antialiased">
       {/* Sidebar - Desktop (hidden on mobile, fixed width w-64) */}
-      <aside className="hidden lg:flex flex-col w-64 bg-slate-900 text-slate-300 border-r border-slate-800 shrink-0 h-screen sticky top-0">
+      <aside className="hidden lg:flex flex-col w-64 bg-[#0d1726] text-slate-300 border-r border-[#1e293b]/50 shrink-0 h-screen sticky top-0 select-none">
         <Sidebar />
       </aside>
 
@@ -26,11 +26,11 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
             onClick={() => setMobileMenuOpen(false)}
           />
           {/* Sliding drawer content */}
-          <div className="relative flex flex-col w-64 bg-slate-900 text-slate-300 h-full z-10 border-r border-slate-800 animate-slide-in">
+          <div className="relative flex flex-col w-64 bg-[#0d1726] text-slate-300 h-full z-10 border-r border-[#1e293b]/50 animate-slide-in">
             <div className="absolute top-4 right-4 z-20 lg:hidden">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-hidden"
+                className="p-1 rounded-md text-slate-400 hover:text-white hover:bg-[#1a293e] focus:outline-hidden"
               >
                 <Icons.X className="w-5 h-5" />
               </button>
@@ -41,15 +41,12 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
       )}
 
       {/* Right Side Content Area */}
-      <div className="grow flex flex-col min-w-0">
+      <div className="grow flex flex-col min-w-0 bg-[#f4f7fa]">
         <TopHeader onOpenMobileMenu={() => setMobileMenuOpen(true)} />
         <main className="grow overflow-y-auto px-4 md:px-8 py-6 max-w-7xl w-full mx-auto space-y-6">
           <Breadcrumbs />
           <ContentContainer>{children}</ContentContainer>
         </main>
-        <footer className="py-4 border-t border-slate-100 bg-white text-center text-xs text-slate-400">
-          <p>© 2026 FAMES & R Office PRO. All rights reserved. (Frontend Foundation Only)</p>
-        </footer>
       </div>
     </div>
   );
@@ -59,24 +56,44 @@ export const AppShell: React.FC<{ children: React.ReactNode }> = ({ children }) 
 // 2. Sidebar Component
 // ==========================================
 export const Sidebar: React.FC<{ onItemClick?: () => void }> = ({ onItemClick }) => {
-  // Group navigation items by section
-  const sections = ['Dashboard', 'Clients', 'Staff', 'Jobs', 'Audit', 'Compliance', 'Administration'] as const;
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+
+  const sections = [
+    'DASHBOARD',
+    'CLIENT MANAGEMENT',
+    'STUDENT & STAFF MANAGEMENT',
+    'JOBS & OPERATIONS',
+    'AUDIT WORKFLOW',
+    'COMPLIANCE',
+    'ADMINISTRATION'
+  ] as const;
+
+  const handleSignOut = () => {
+    localStorage.removeItem('fames_pro_logged_in');
+    localStorage.removeItem('fames_pro_user_email');
+    localStorage.removeItem('fames_pro_user_name');
+    localStorage.removeItem('fames_pro_user_role');
+    showToast('Logged out of secure workspace.', 'info');
+    navigate('/login');
+  };
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden bg-[#0d1726]">
       {/* Brand / Logo */}
-      <div className="h-16 flex items-center px-6 border-b border-slate-800 bg-slate-950/40 shrink-0 gap-2.5">
-        <div className="w-8 h-8 bg-white text-slate-900 rounded-lg flex items-center justify-center font-black text-sm tracking-tighter">
-          FR
+      <div className="h-18 flex items-center px-5 border-b border-[#18283d] shrink-0 gap-3">
+        <div className="w-9 h-9 bg-[#172c47] text-white rounded-xl flex items-center justify-center shrink-0 border border-blue-500/20 shadow-xs">
+          <Icons.Building2 className="w-5 h-5 text-blue-400" />
         </div>
-        <div>
-          <h1 className="font-bold text-sm text-white tracking-wide leading-none">FAMES & R</h1>
-          <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-0.5 block">Office PRO</span>
+        <div className="min-w-0">
+          <h1 className="font-extrabold text-sm text-white tracking-wide leading-tight">FAMES & R</h1>
+          <p className="text-[11px] font-bold text-slate-200 leading-tight">Office PRO</p>
+          <span className="text-[8.5px] font-bold text-slate-400 uppercase tracking-widest block mt-0.5">CHARTERED ACCOUNTANTS</span>
         </div>
       </div>
 
       {/* Navigation Groups */}
-      <nav className="grow overflow-y-auto p-4 space-y-5 custom-scrollbar">
+      <nav className="grow overflow-y-auto px-3 py-4 space-y-5 custom-scrollbar">
         {sections.map((section) => {
           const items = NAVIGATION_ITEMS.filter((item) => item.section === section && item.enabled);
           if (items.length === 0) return null;
@@ -98,15 +115,21 @@ export const Sidebar: React.FC<{ onItemClick?: () => void }> = ({ onItemClick })
         })}
       </nav>
 
-      {/* Quick Status Bar */}
-      <div className="p-4 border-t border-slate-800 bg-slate-950/15 shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-2.5 h-2.5 bg-amber-500 rounded-full animate-pulse shrink-0" />
-          <div className="min-w-0">
-            <p className="text-[11px] font-bold text-slate-400 tracking-wide uppercase leading-none">Sandbox Mode</p>
-            <p className="text-[10px] text-slate-500 truncate mt-0.5">Changes reset after refresh</p>
-          </div>
+      {/* Sidebar Footer User Section */}
+      <div className="p-4 border-t border-[#18283d] bg-[#09101c] shrink-0 space-y-2">
+        <div className="space-y-0.5">
+          <p className="text-xs font-semibold text-slate-300 truncate">manager.fames@gmail.com</p>
+          <span className="text-[10px] font-extrabold text-emerald-400 tracking-wider uppercase block">
+            SUPER ADMIN
+          </span>
         </div>
+        <button
+          onClick={handleSignOut}
+          className="w-full flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white pt-1 transition-colors group"
+        >
+          <Icons.LogOut className="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" />
+          <span>Sign out</span>
+        </button>
       </div>
     </div>
   );
@@ -121,7 +144,7 @@ export const SidebarSection: React.FC<{ title: string; children: React.ReactNode
 }) => {
   return (
     <div className="space-y-1">
-      <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 mb-1.5 select-none">
+      <h3 className="text-[9.5px] font-bold text-slate-400 uppercase tracking-wider px-3 mb-1.5 select-none opacity-80">
         {title}
       </h3>
       <div className="space-y-0.5">{children}</div>
@@ -155,19 +178,19 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
       end={route === '/dashboard'}
       onClick={onClick}
       className={({ isActive }) =>
-        `flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+        `flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-all ${
           isActive
-            ? 'bg-slate-800 text-white shadow-xs'
-            : 'text-slate-400 hover:bg-slate-800/40 hover:text-slate-200'
+            ? 'bg-[#172a45] text-white shadow-xs font-bold'
+            : 'text-slate-300 hover:bg-[#132238] hover:text-white'
         }`
       }
     >
       <div className="flex items-center gap-2.5 min-w-0">
-        <IconComponent className="w-4 h-4 shrink-0" />
+        <IconComponent className="w-4 h-4 shrink-0 text-slate-400 group-hover:text-white" />
         <span className="truncate">{label}</span>
       </div>
       {badge !== undefined && (
-        <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-slate-800 text-slate-300 border border-slate-700/50">
+        <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-[#1e324d] text-slate-200 border border-slate-700/50">
           {badge}
         </span>
       )}
@@ -183,19 +206,6 @@ export const TopHeader: React.FC<{ onOpenMobileMenu: () => void }> = ({ onOpenMo
   const navigate = useNavigate();
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-
-  const userEmail = localStorage.getItem('fames_pro_user_email') || 'zahirulk92@gmail.com';
-  const userName = localStorage.getItem('fames_pro_user_name') || 'A. R. Chowdhury, FCA';
-  const userRole = localStorage.getItem('fames_pro_user_role') || 'Partner';
-  
-  // Calculate dynamic initials for avatar
-  const initials = userName
-    .replace('Mr. ', '')
-    .split(' ')
-    .filter(n => n.length > 0 && n[0] !== n[0].toLowerCase())
-    .map(n => n[0])
-    .join('')
-    .substring(0, 2) || 'AR';
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -215,15 +225,15 @@ export const TopHeader: React.FC<{ onOpenMobileMenu: () => void }> = ({ onOpenMo
   };
 
   return (
-    <header className="bg-white border-b border-slate-150 h-16 shrink-0 sticky top-0 z-30 flex items-center justify-between px-4 md:px-8">
-      {/* Left side: Hamburger (on mobile) and Global Search */}
-      <div className="flex items-center grow gap-4 max-w-xl">
+    <header className="bg-white border-b border-slate-200/80 h-16 shrink-0 sticky top-0 z-30 flex items-center justify-between px-4 md:px-8">
+      {/* Left side: Panel Toggle & Search Bar */}
+      <div className="flex items-center grow gap-3 max-w-xl">
         <button
           onClick={onOpenMobileMenu}
-          className="lg:hidden p-2 rounded-lg hover:bg-slate-55 text-slate-600 focus:outline-hidden"
-          aria-label="Open sidebar"
+          className="p-2 rounded-lg hover:bg-slate-100 text-slate-600 focus:outline-hidden transition-colors"
+          aria-label="Toggle sidebar"
         >
-          <Icons.Menu className="w-5 h-5" />
+          <Icons.PanelLeft className="w-5 h-5 text-slate-700" />
         </button>
 
         {/* Global Search form */}
@@ -235,40 +245,66 @@ export const TopHeader: React.FC<{ onOpenMobileMenu: () => void }> = ({ onOpenMo
             type="search"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="block w-full pl-9 pr-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-slate-900/15 focus:border-slate-900 focus:bg-white transition-all"
-            placeholder="Global Search (Press Enter to search)..."
+            className="block w-full pl-9 pr-3 py-1.5 bg-[#f1f5f9] border border-transparent rounded-lg text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white transition-all"
+            placeholder="Search clients, assignments, tasks..."
           />
         </form>
       </div>
 
-      {/* Right side: Action utilities, Notifications, Profile dropdown */}
-      <div className="flex items-center gap-3">
-        {/* Connection status badge using centralized component */}
-        <DemoBadge />
+      {/* Right side: Beta Badge, Help Desk, Mute, Notifications, Profile */}
+      <div className="flex items-center gap-2.5">
+        {/* Invite-only Beta Badge */}
+        <span className="hidden sm:inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 border border-amber-200/80 px-2.5 py-1 rounded-full text-[11px] font-bold select-none">
+          <span className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+          Invite-only Beta
+        </span>
 
-        {/* Alert/Notification trigger */}
+        {/* Help Desk Button */}
         <button
-          onClick={() => showToast('No new notifications today.', 'info')}
-          className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-50 rounded-lg relative transition-all"
+          onClick={() => showToast('Opening Help Desk ticket portal...', 'info')}
+          className="hidden md:flex items-center gap-1.5 bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors select-none"
+        >
+          <Icons.HelpCircle className="w-4 h-4 text-slate-500" />
+          <span>Help Desk</span>
+        </button>
+
+        {/* Audio Mute Icon */}
+        <button
+          onClick={() => showToast('Audio notifications toggled.', 'info')}
+          className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-all"
+          aria-label="Toggle sound"
+        >
+          <Icons.Volume2 className="w-4 h-4" />
+        </button>
+
+        {/* Notification Bell Icon */}
+        <button
+          onClick={() => showToast('You have 18 pending notifications.', 'info')}
+          className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg relative transition-all"
           aria-label="View notifications"
         >
           <Icons.Bell className="w-4 h-4" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full border border-white" />
+          <span className="absolute -top-0.5 -right-0.5 min-w-4 h-4 bg-rose-600 text-white text-[9px] font-black rounded-full flex items-center justify-center px-1 shadow-xs border border-white">
+            18
+          </span>
         </button>
 
-        {/* User profile dropdown placeholder */}
-        <div className="relative">
+        {/* User Profile Dropdown */}
+        <div className="relative pl-1">
           <button
             onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-            className="flex items-center gap-2 p-1 rounded-lg hover:bg-slate-50 text-left transition-all"
+            className="flex items-center gap-2.5 p-1 rounded-lg hover:bg-slate-100 text-left transition-all"
             aria-label="Open user profile menu"
           >
-            <div className="w-8 h-8 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center border border-slate-200 shrink-0 uppercase">
-              {initials}
+            <div className="w-8 h-8 rounded-full bg-[#132c4a] text-white font-extrabold text-xs flex items-center justify-center border border-slate-300 shrink-0">
+              MS
             </div>
             <div className="hidden md:block">
-              <p className="text-xs font-semibold text-slate-800 leading-none">{userName.split(',')[0]}</p>
-              <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 block">{userRole}</span>
+              <p className="text-xs font-bold text-slate-800 leading-none">Mr. Super Admin</p>
+              <div className="flex items-center gap-1 mt-0.5">
+                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
+                <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">SUPER ADMIN</span>
+              </div>
             </div>
             <Icons.ChevronDown className="w-3.5 h-3.5 text-slate-400" />
           </button>
@@ -278,13 +314,13 @@ export const TopHeader: React.FC<{ onOpenMobileMenu: () => void }> = ({ onOpenMo
               <div className="fixed inset-0 z-40" onClick={() => setProfileDropdownOpen(false)} />
               <div className="absolute right-0 mt-2 w-52 bg-white border border-slate-100 rounded-xl shadow-lg py-1.5 z-50 text-xs text-slate-600 animate-fade-in">
                 <div className="px-4 py-2 border-b border-slate-50">
-                  <p className="font-semibold text-slate-850">{userName}</p>
-                  <p className="text-[10px] text-slate-400 truncate mt-0.5">{userEmail}</p>
+                  <p className="font-bold text-slate-850">Mr. Super Admin</p>
+                  <p className="text-[10px] text-slate-400 truncate mt-0.5">manager.fames@gmail.com</p>
                 </div>
                 <button
                   onClick={() => {
                     setProfileDropdownOpen(false);
-                    showToast('Role switching is disabled on this foundation blueprint.', 'info');
+                    showToast('Profile management view.', 'info');
                   }}
                   className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2 text-slate-700"
                 >
@@ -294,7 +330,7 @@ export const TopHeader: React.FC<{ onOpenMobileMenu: () => void }> = ({ onOpenMo
                 <button
                   onClick={() => {
                     setProfileDropdownOpen(false);
-                    showToast('Settings saved successfully (Frontend only).', 'success');
+                    showToast('Account settings.', 'success');
                   }}
                   className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-center gap-2 text-slate-700"
                 >
